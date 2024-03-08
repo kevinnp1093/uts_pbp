@@ -15,6 +15,12 @@ func main() {
 
 	router.HandleFunc("/rooms", controllers.GetAllRooms).Methods("GET")
 
+	router.HandleFunc("/roomsDetailed", controllers.GetDetailRooms).Methods("GET")
+
+	router.HandleFunc("/rooms", controllers.InsertRooms).Methods("POST")
+
+	router.HandleFunc("/rooms", controllers.LeaveRoom).Methods("DELETE")
+
 	http.Handle("/", router)
 	fmt.Println("Connected to port 8080")
 	log.Println("Connected to port 8080")

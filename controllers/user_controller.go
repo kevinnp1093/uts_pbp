@@ -110,14 +110,6 @@ func GetDetailRooms(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func sendErrorResponse(w http.ResponseWriter, message string) {
-	var response ErrorResponse
-	response.Status = 400
-	response.Message = message
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
-}
-
 func InsertRooms(w http.ResponseWriter, r *http.Request) {
 	db := Connect()
 	defer db.Close()
@@ -178,6 +170,14 @@ func LeaveRoom(w http.ResponseWriter, r *http.Request) {
 		response.Status = 400
 		response.Message = "Delete Failed!"
 	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
+
+func sendErrorResponse(w http.ResponseWriter, message string) {
+	var response ErrorResponse
+	response.Status = 400
+	response.Message = message
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
