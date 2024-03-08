@@ -120,7 +120,7 @@ func InsertRoom(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id := r.Form.Get("id")
-	roomName, _ := strconv.Atoi(r.Form.Get("room_name"))
+	roomName := r.Form.Get("room_name")
 	idGame, _ := strconv.Atoi(r.Form.Get("id_game"))
 
 	_, errQuery := db.Exec("INSERT INTO rooms(id, room_name, id_game)values (?,?,?)",
@@ -130,7 +130,6 @@ func InsertRoom(w http.ResponseWriter, r *http.Request) {
 	)
 	var response RoomResponse
 	response.Data.RoomName = roomName
-	response.Data.IdGame = idGame
 
 	if errQuery == nil {
 		response.Status = 200
@@ -164,11 +163,11 @@ func LeaveRoom(w http.ResponseWriter, r *http.Request) {
 	var response RoomResponse
 	if errQuery == nil {
 		response.Status = 200
-		response.Message = "Success"
+		response.Message = "Berhasil keluar room"
 	} else {
 		fmt.Println(errQuery)
 		response.Status = 400
-		response.Message = "Delete Failed!"
+		response.Message = "Gagal keluar room"
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
