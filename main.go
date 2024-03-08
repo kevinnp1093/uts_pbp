@@ -7,10 +7,13 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
+	"github.com/modul2/controllers"
 )
 
 func main() {
 	router := mux.NewRouter()
+
+	router.HandleFunc("/rooms", controllers.GetAllRooms).Methods("GET")
 
 	http.Handle("/", router)
 	fmt.Println("Connected to port 8080")
