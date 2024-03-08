@@ -110,7 +110,7 @@ func GetDetailRooms(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func InsertRooms(w http.ResponseWriter, r *http.Request) {
+func InsertRoom(w http.ResponseWriter, r *http.Request) {
 	db := Connect()
 	defer db.Close()
 

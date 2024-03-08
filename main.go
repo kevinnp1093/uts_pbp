@@ -17,7 +17,7 @@ func main() {
 
 	router.HandleFunc("/roomsDetailed", controllers.GetDetailRooms).Methods("GET")
 
-	router.HandleFunc("/rooms", controllers.InsertRooms).Methods("POST")
+	router.HandleFunc("/rooms", controllers.InsertRoom).Methods("POST")
 
 	router.HandleFunc("/rooms", controllers.LeaveRoom).Methods("DELETE")
 
